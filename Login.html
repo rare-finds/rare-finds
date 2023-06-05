@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  	<title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="css/style.css">
+
+	</head>
+	<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+			</div>
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4">
+					<div class="login-wrap py-5">
+		      	<div class="img d-flex align-items-center justify-content-center" style="background-image: url(images/LOGO.png);"></div>
+		      	<h3 class="text-center mb-0">Bem-Vindo</h3>
+		      	<p class="text-center">Entre na sua conta indicando as suas credenciais de acesso</p>
+						<form action="#" class="login-form">
+		      		<div class="form-group">
+		      			<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-user"></span></div>
+		      			<input type="text" class="form-control" placeholder="Email ou Username" name="email_username" required>
+		      		</div>
+	            <div class="form-group">
+	            	<div class="icon d-flex align-items-center justify-content-center"><span class="fa fa-lock"></span></div>
+	              <input type="password" class="form-control" placeholder="Password" name="password" required>
+	            </div>
+	            <div class="form-group d-md-flex">
+								<div class="w-100 text-md-right">
+									<a href="#">Esqueceu-se da Password?</a>
+								</div>
+	            </div>
+	            <div class="form-group">
+	            	<button type="submit" class="btn form-control btn-primary rounded submit px-3">Login</button>
+	            </div>
+	          </form>
+	          <div class="w-100 text-center mt-4 text">
+	          	<p class="mb-0">Não tem conta?</p>
+		          <a href="SignUp.html">Sign Up</a>
+	          </div>
+	        </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+	document.getElementsByTagName("form")[0].addEventListener("submit", function(event) {
+		event.preventDefault();
+
+		let url = "https://rarefinds.herokuapp.com/auth/login"
+		let formData = new FormData(event.target);
+		let data = Object.fromEntries(formData.entries());
+		let json = {
+			username: data.email_username,
+			email: data.email_username,
+			password: data.password,
+		}
+
+		fetch(url, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			  },
+			body: JSON.stringify(json),
+			credentials: 'include',
+		})
+		.then(response => {
+			if (!response.ok) {
+				alert('Credenciais inválidas ou utilizador não encontrado.');
+				window.location.reload();
+				throw new Error(response.text);
+			} else {
+				return response.json();
+			}
+		})
+		.then(data => {
+			localStorage.setItem('token', data.token);
+			if (sessionStorage.getItem('redirectAfterLogin')) {
+				window.location.href = sessionStorage.getItem('redirectAfterLogin');
+				sessionStorage.removeItem('redirectAfterLogin');
+			} else if (sessionStorage.getItem('redirectProfile')) {
+				window.location.href = sessionStorage.getItem('redirectProfile');
+				sessionStorage.removeItem('redirectProfile');
+			} else {
+				window.location.href = "/index.html";
+			}
+		})
+		.catch(error => {
+			console.error("Error:", error);
+		})
+		event.target.reset();
+	});
+	
+  </script>
+
+	</body>
+</html>
+

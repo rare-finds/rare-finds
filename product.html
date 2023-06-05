@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Rarefinds</title>
+    <link rel="stylesheet" href="css1/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400|Roboto:300,400,700">
+    <link rel="stylesheet" href="assets/css/Articles-Cards-images.css">
+    <link rel="stylesheet" href="assets/css/Black-Navbar.css">
+    <link rel="stylesheet" href="assets/css/Footer-Dark-icons.css">
+    <link rel="stylesheet"
+        href="assets/css/Navbar---App-Toolbar--LG--MD---Mobile-Nav--SM--XS-navbar-breakpoint-override.css">
+    <link rel="stylesheet" href="assets/css/Navbar---App-Toolbar--LG--MD---Mobile-Nav--SM--XS.css">
+    <link rel="stylesheet" href="assets/css/styles-1.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <style>
+        .product-box {
+            width: 30%;
+            height: 450px;
+            background-color: #95B0B0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0px 0px 25px 25px;
+        }
+
+        .product-box img {
+            border-radius: 25%;
+            height: 150px;
+            width: 150px;
+        }
+
+        .buy-button {
+            border-radius: 10%;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0A9A9E;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.15s opacity 0.15s;
+        }
+
+        .buy-button:hover {
+            background-color: #12bcc2;
+        }
+
+        .buy-button:active {
+            background-color: #12bcc2;
+            opacity: 0.5;
+        }
+
+        .product-info-container {
+            width: 70%;
+            background-color: #95B0B0;
+            padding: 20px;
+            border-radius: 0px 0px 25px 25px;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        .product-info {
+            display: grid;
+            border: 1px solid #000000;
+            grid-template-columns: auto 1fr;
+            grid-gap: 20px;
+            align-items: center;
+            margin: 10px;
+            background-color: #0A9A9E;
+            border-radius: 25px;
+            position: relative;
+            padding: 15px 10px 15px 10px;
+        }
+
+        .product-description {
+            grid-column: 1 / -1;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body class="bg-light flex-column d-flex min-vh-100" onload="checkLogin();">
+    <nav class="navbar navbar-light navbar-expand-lg bg-light" id="unlogged">
+        <div class="container px-4 px-lg-5"><a class="navbar-brand" href="index.html"><img src="Capturar.PNG"
+                    height="44px"></a><button data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="perfil-fav.html">Perfil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalog.html">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="newproduct.html">Vender</a></li>
+                </ul>
+                <form id="search_form" class="d-flex" role="search"><input class="form-control me-2" type="search" placeholder="Procurar produto"
+                        aria-label="Search" name="search"><button class="btn btn-outline-dark mx-1" type="submit"><img
+                            src="assets/img/transferir.png" height="20px"></button></form>
+                <form class="d-flex"><a class="btn btn-outline-dark mx-1" role="button" href="Login.html"> Login <span
+                            class="badge rounded-pill bg-dark text-white ms-1"></span></a></form>
+            </div>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-light navbar-expand-lg bg-light" id="logged">
+        <div class="container px-4 px-lg-5"><a class="navbar-brand" href="index.html"><img src="Capturar.PNG"
+                    height="44px"></a><button data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <li class="nav-item"><a class="nav-link" href="perfil-fav.html">Perfil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalog.html">Produtos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="newproduct.html">Vender</a></li>
+                </ul>
+                <form id="search_form" class="d-flex" role="search"><input class="form-control me-2" type="search" placeholder="Procurar produto"
+                        aria-label="Search" name="search"><button class="btn btn-outline-dark mx-1" type="submit"><img
+                            src="assets/img/transferir.png" height="20px"></button></form>
+            </div>
+            <div class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="images/no_user.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu text-small" style="">
+                    <li><a class="dropdown-item" href="perfil-fav.html">Perfil</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="index.html" onclick="signOut();">Sign out</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container d-flex">
+        <div class="product-box shadow-lg p-3 mb-5 border border-top-0 border-4">
+            <!-- Product content goes here -->
+            <img id="product_image" src="images/mastersword.jpg">
+            <h3 style="margin-top: 20px; text-align: center;" id="product_name">Master Sword</h3>
+            <p style="margin-top: 15px;"><b id="product_price">Price: ??</b></p>
+            <button class="buy-button" onclick="checkout();">Comprar Agora</button>
+        </div>
+
+        <div class="product-info-container shadow-lg p-3 mb-5 border border-top-0 border-4" style="margin-left: 20px">
+            <div class="product-info">
+                <div class="product-image">
+                    <img src="images/no_user.png" alt="imagem vendedor">
+                </div>
+                <div class="product-details">
+                    <h3 id="seller_name">Seller: Name</h3>
+                    <div class="ratings">
+                        <div class="stars">
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                            <span class="fa fa-star"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-info">
+                <div class="product-details">
+                    <h3>Descrição do Produto:</h3>
+                    <h6 id="product_description">Inserir descrição de produto</h6>
+                </div>
+            </div>
+
+
+            <div class="product-info">
+                <div class="product-details">
+                    <h3>Detalhes:</h3>
+                    <ul>
+                        <li id="product_type">Categoria: </li>
+                        <li id="product_condition">Estado: </li>
+                        <li id="product_edition">Edição Especial: </li>
+                        <li id="product_lev">Levantamento: </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="container py-4 py-lg-0"
+        style="margin-top: -2px;padding-bottom: 0px;padding-top: 0px;margin-bottom: -67px;">
+        <footer
+            class="d-flex justify-content-between align-items-center flex-wrap mt-auto border-top m-4 my-lg-4 mx-lg-4"
+            style="margin-top: 0px;margin-bottom: -30px;padding-bottom: 1px;">
+            <p class="col-md-4 mb-0 text-body-secondary">© 2023 Company, Inc</p><a
+                class="d-flex justify-content-center align-items-center me-md-auto col-md-4 mb-3 mb-md-0 link-body-emphasis text-decoration-none"
+                href="index.html"><img src="Capturar.PNG" height="44px"></a>
+            <ul class="nav justify-content-end col-md-4">
+                <li class="nav-item"><a class="nav-link px-2 text-body-secondary" href="perfil-fav.html">Perfil</a></li>
+                <li class="nav-item"><a class="nav-link px-2 text-body-secondary" href="#">Produtos</a></li>
+                <li class="nav-item"><a class="nav-link px-2 text-body-secondary" href="#">Vender</a></li>
+            </ul>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    <script src="js1/perfil.js"></script>
+    <script>
+        function checkLogin() {
+            if (localStorage.getItem('token')) {
+                document.getElementById("unlogged").style.display = "none";
+            } else {
+                document.getElementById("logged").style.display = "none";
+            }
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        fetch(`https://rarefinds.herokuapp.com/products/${productId}`)
+            .then(response => response.json())
+            .then(data => {
+                let productName = document.getElementById('product_name');
+                productName.textContent = data.name;
+
+                let productPrice = document.getElementById('product_price');
+                productPrice.textContent = "Preço: " + data.price + "€";
+
+                fetch(`https://rarefinds.herokuapp.com/auth/user/${data.owner_id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let sellerName = document.getElementById('seller_name');
+                        sellerName.textContent = `${data.name} ${data.last_name}`;
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    })
+
+                let productDescription = document.getElementById('product_description');
+                productDescription.textContent = data.description;
+
+                let productType = document.getElementById('product_type');
+                productType.textContent = "Categoria: " + data.type;
+
+                let productCondition = document.getElementById('product_condition');
+                productCondition.textContent = "Estado: " + data.condition;
+
+                let productEdition = document.getElementById('product_edition');
+                if (data.limited_edition) {
+                    productEdition.textContent = "Edição especial: sim";
+                } else {
+                    productEdition.textContent = "Edição especial: não";
+                }
+
+                let productImage = document.getElementById('product_image');
+                byteStringToImage(data.image, function (image) {
+                    productImage.src = image.src;
+                })
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            })
+
+        function byteStringToImage(byteString, callback) {
+            let img = new Image();
+            img.onload = function () {
+                callback(img);
+            };
+            img.src = byteString;
+        }
+
+        document.getElementById('search_form').addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            let formData = new FormData(event.target);
+            let formDataEntries = Object.fromEntries(formData.entries());
+
+            window.location.href = `catalog.html?q=${formDataEntries.search}`;
+        });
+
+        function checkout() {
+            window.location.href = `payment.html?id=${productId}`;
+        }
+    </script>
+
+</body>
+
+</html>
